@@ -2,30 +2,23 @@ var base_url = "https://api.football-data.org/v2/";
 base_url = base_url.replace(/^http:\/\//i, 'https://');
 var token = "f6c4d852cf934e0db7cede29428239a9";
 
-// Blok kode yang akan di panggil jika fetch berhasil
 function status(response) {
   if (response.status !== 200) {
     console.log("Error : " + response.status);
-    // Method reject() akan membuat blok catch terpanggil
     return Promise.reject(new Error(response.statusText));
   } else {
-    // Mengubah suatu objek menjadi Promise agar bisa "di-then-kan"
     return Promise.resolve(response);
   }
 }
 
-// Blok kode untuk memparsing json menjadi array JavaScript
 function json(response) {
   return response.json();
 }
 
-// Blok kode untuk meng-handle kesalahan di blok catch
 function error(error) {
-  // Parameter error berasal dari Promise.reject()
   console.log("Error : " + error);
 }
 
-// Blok kode untuk melakukan request data json
 function getTeams() {
   if ("caches" in window) {
     caches.match(base_url + "competitions/2021/standings").then(function(response) {
@@ -135,7 +128,6 @@ function getTeamById() {
 
             document.getElementById("body-content").innerHTML = teamHtml;
 
-            // Kirim objek data hasil parsing json agar bisa disimpan ke indexed db
             resolve(data);
           });
         }
@@ -174,9 +166,7 @@ function getTeamById() {
             </div>
           </div>
         `;
-        // Sisipkan komponen card ke dalam elemen dengan id #content
         document.getElementById("body-content").innerHTML = teamHtml;
-        // Kirim objek data hasil parsing json agar bisa disimpan ke indexed db
         resolve(data);
       });
   });

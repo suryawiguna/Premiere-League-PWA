@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function(){
 
-	// SIDEBAR NAVIGATION
 	var elems = document.querySelectorAll('.sidenav');
 	M.Sidenav.init(elems);
 	loadNav();
@@ -12,21 +11,17 @@ document.addEventListener('DOMContentLoaded', function(){
 			if (this.readyState == 4){
 				if(this.status != 200) return;
 
-				// Muat daftar tautan menu
 				document.querySelectorAll(".topnav, .sidenav")
 				.forEach(function(elm){
 					elm.innerHTML = xhttp.responseText;
 				});
 
-				// Daftarkan event listener untuk setiap tautan menu
 				document.querySelectorAll('.sidenav a, .topnav a')
 				.forEach(function(elm){
 					elm.addEventListener('click', function(event){
-						// Tutup sidenav
 						var sidenav = document.querySelector('.sidenav');
 						M.Sidenav.getInstance(sidenav).close();
 						
-						// Muat konten halaman yang dipanggil 
 						page = event.target.getAttribute('href').substr(1);
 						loadPage(page);
 					});
@@ -37,7 +32,6 @@ document.addEventListener('DOMContentLoaded', function(){
 		xhttp.send();
 	}
 	
-	// Load page content
 	var page = window.location.hash.substr(1);
 	if(page == '') page = 'home';
 	loadPage(page);
