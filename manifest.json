@@ -4,8 +4,8 @@
     "description": "Premiere League simple app",
     "start_url": "/index.html",
     "display": "standalone",
-    "background_color": "#00897B",
-    "theme_color": "#00897B",
+    "background_color": "#4a148c",
+    "theme_color": "#4a148c",
     "icons": [
         {
             "src": "logo.png",
@@ -13,5 +13,5 @@
             "type": "image/png"
         }
     ],
-    "gcm_sender_id": "561005267678"
+    "gcm_sender_id": "958504010516"
 }
