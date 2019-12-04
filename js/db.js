@@ -24,15 +24,12 @@ function saveThis(team) {
           phone: team.phone,
           website: team.website,
       }
-      store.add(data);
+      store.put(data);
       return tx.complete;
     })
     .then(function() {
-      alert("Team has been saved.");
+      M.toast({html: 'Team has been saved'});
       window.location.href = '/#home';
-    }).catch(function(error) {
-        alert('Team already saved.');
-        window.location.href = '/#saved';
     });
 }
 
@@ -86,7 +83,7 @@ function removeThis(id) {
         store.delete(id);
         return tx.complete;
     }).then(function() {
-        alert('Team has been removed');
+        M.toast({html: 'Team has been removed'});    
         window.location.href = '/#saved';
     });
 }

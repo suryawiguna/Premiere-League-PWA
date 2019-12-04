@@ -11,8 +11,12 @@ var urlsToCache = [
   "/manifest.json",
   "/js/nav.js",
   "/js/api.js",
+  "/js/regis.js",
+  "/js/sw.js",
   "/js/idb.js",
-  "/logo.png"
+  "/js/db.js",
+  "/logo.png",
+  "/logo-sm.png"
 ];
 
 self.addEventListener("install", function(event) {

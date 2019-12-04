@@ -66,22 +66,22 @@
       }
 document.addEventListener("DOMContentLoaded", function() {
   var urlParams = new URLSearchParams(window.location.search);
-  var isFromSaved = urlParams.get("saved");
-
   var save = document.getElementById("save");
   var remove = document.getElementById("remove");
-
-  if (isFromSaved) {
-    
-    save.style.display = 'none';
-    remove.style.display = 'inline-block';
-    
-    var item = getSavedTeamById();
-  } else {
-    remove.style.display = 'none';
-    save.style.display = 'inline-block';
-    var item = getTeamById();
-  }
+  var idParam = urlParams.get("id");
+  var item = null;
+        
+    getById(parseInt(idParam)).then(function(team){
+        if (team != undefined) {
+          save.style.display = 'none';
+          remove.style.display = 'inline-block';
+          item = getSavedTeamById();
+        } else {
+          remove.style.display = 'none';
+          save.style.display = 'inline-block';
+          item = getTeamById();
+        }
+    });
 
   save.onclick = function() {
     item.then(function(team) {
