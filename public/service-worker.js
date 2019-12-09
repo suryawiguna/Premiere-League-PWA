@@ -29,23 +29,14 @@ workbox.precaching.precacheAndRoute([
 ]);
 
 workbox.routing.registerRoute(
-    new RegExp('/pages/'),
-    workbox.strategies.staleWhileRevalidate(
-        {
-            cacheName: 'pages'
-        }
-    )
+    new RegExp('/'),
+    workbox.strategies.staleWhileRevalidate()
   );
 
 workbox.routing.registerRoute(
-    new RegExp('^https://api\\.football-data\\.org/v2/'),
-    new workbox.strategies.CacheFirst({
-      cacheName: 'football-data-cache',
-      plugins: [
-        new workbox.cacheableResponse.Plugin({
-          statuses: [0, 200],
-        })
-      ]
+    new RegExp('https://api.football-data.org/v2/'),
+    workbox.strategies.staleWhileRevalidate({
+        cacheName: 'football-data-cache',
     })
   );
 
